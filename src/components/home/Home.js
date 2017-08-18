@@ -16,8 +16,9 @@ class Home extends Component{
     componentDidMount(){
         return axios.get('/api/getVideos').then(response => {
             this.setState({
-                videos: response.data
+                videos: response.data.body
             })
+            console.log(this.state.videos)
         })
     }
 
