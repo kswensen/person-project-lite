@@ -1,0 +1,25 @@
+.mainScreen{
+    height: 100vh;
+    width: 100%;
+}
+
+.header{
+    height: 7vh;
+    width: 100%;
+    border-bottom: 2px solid lightgrey;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.logoContainer{
+    height: 50px;
+    width: 50px;
+    margin-right: 10px;
+}
+
+.logo{
+    height: 100%;
+    width: 50px;
+    cursor: pointer;
+}
