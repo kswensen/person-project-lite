@@ -23,3 +23,12 @@
     width: 50px;
     cursor: pointer;
 }
+
+.video{
+    display: inline-block;
+}
+
+.video img{
+    width: 150px;
+    height: 150px;
+}

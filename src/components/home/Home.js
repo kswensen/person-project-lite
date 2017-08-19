@@ -15,12 +15,23 @@ class Home extends Component{
 
     componentDidMount(){
         return axios.get('/api/getVideos').then(response => {
+            console.log(response.data[0])
             this.setState({
-                videos: response.data.body
+                videos: response.data[0]
             })
-            console.log(this.state.videos)
+            console.log("videos: ", this.state.videos)
         })
     }
+
+    // getVideoCall(){
+    //     return axios.get('/api/getVideoCall').then(response => { 
+    //         console.log(response.data[0].body);
+    //         this.setState({
+    //             videos: response.data
+    //         });
+    //         console.log(this.state.videos)
+    //     })
+    // }
 
     logOut(){
         this.setState({
@@ -30,6 +41,12 @@ class Home extends Component{
     
     render(){
         if(!this.state.logout){
+            const videos = this.state.videos.map((video, i)=> {
+                return (<ul key={i} className="video">
+                    <img src={video.thumbnail}/>
+                    <h3>{video.title}</h3>
+                </ul>)
+            })
         return(
             <div>
                 <div className="mainScreen">
