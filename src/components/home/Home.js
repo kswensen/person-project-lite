@@ -16,9 +16,9 @@ class Home extends Component{
     }
 
     componentDidMount(){
-        return axios.get('/api/getVideos').then(response => {
+        return axios.get('/api/getVideoCall').then(response => {
             this.setState({
-                videos: JSON.parse(response.data.body).items
+                videos: response.data
             })
         })
     }
@@ -56,7 +56,10 @@ class Home extends Component{
             url: url
         }
         axios.post('/api/upload', urlId).then(response =>{
-            return axios.get('/api/getVideoCall').then(response =>{
+            console.log(JSON.parse(response.data.body).items)
+            this.setState({
+                videos: JSON.parse(response.data.body).items,
+                toggled: false
             })
         })
     }

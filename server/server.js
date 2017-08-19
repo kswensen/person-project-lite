@@ -18,23 +18,20 @@ app.post('/login', (req, res)=> {
     } else {
         res.status(404).send("Invalid");
     }
-    console.log("hello?")
 })
 
-app.get('/api/getVideos', (req, res)=> {
-    request('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=sxRzGmYg_J8&key=' + config.apiKey, (error, response, body)=> {
-    if(videoCall.length === 0){
-        videoCall.push(response);    
-        res.status(200).send(response);
-    } else {
-        res.status(200).send(response);
-    }    
-    })
-})
+// app.get('/api/getVideos', (req, res)=> {
+//     request('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=sxRzGmYg_J8&key=' + config.apiKey, (error, response, body)=> {
+//     if(videoCall.length === 0){
+//         videoCall.push(response);    
+//         res.status(200).send(response);
+//     } else {
+//         res.status(200).send(response);
+//     }    
+//     })
+// })
 
 app.get('/api/getVideoCall', (req, res)=> {
-    console.log("fired")
-    console.log(videoCall)
     res.status(200).send(videoCall);
 })
 
