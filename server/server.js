@@ -10,7 +10,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-const videoCall = [{thumbnail: 'https://www.googleapis.com/youtube/v3/videos?part=snippet&id=sxRzGmYg_J8&key=' + config.apiKey, title: "The Iron Stomach Gauntlet Challenge Doesn't Go As Planned | L.A. BEAST"}];
+const videoCall = [];
 
 app.post('/login', (req, res)=> {
     if(req.body.username === logins.username && req.body.password === logins.password){
@@ -21,11 +21,11 @@ app.post('/login', (req, res)=> {
 })
 
 app.get('/api/getVideos', (req, res)=> {
-    // request('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=sxRzGmYg_J8&key=' + config.apiKey, (error, response, body)=> {
-    //     videoCall.push(response);    
-    //     res.status(200).send(response);
-    // })
-    res.status(200).send(videoCall);
+    request('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=sxRzGmYg_J8&key=' + config.apiKey, (error, response, body)=> {
+        videoCall.push(response);    
+        res.status(200).send(response);
+    })
+    console.log(videoCall);
 })
 
 app.get('/api/getVideoCall', (req, res)=> {

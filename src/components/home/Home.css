@@ -3,10 +3,16 @@
     width: 100%;
 }
 
+.background{
+    background: url('./../../mainImage.jpg') no-repeat center;
+    background-color: rgba(0, 0, 0, .10);
+}
+
 .header{
-    height: 7vh;
+    height: 9vh;
     width: 100%;
     border-bottom: 2px solid lightgrey;
+    background: white;
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -25,10 +31,25 @@
 }
 
 .video{
-    display: inline-block;
+    display: flex;
+    box-shadow: 0 0 5px 0 black;
+    border-radius: 5px;
+    height: 250px;
+    width: 240px;
+    justify-content: center;
+    flex-flow: column;
+    margin-left: 10px;
+    padding-top: 10px;
+    background: white;
 }
 
 .video img{
-    width: 150px;
+    width: 200px;
     height: 150px;
+    border: 2px solid lightgray;
+}
+
+.video p{
+    font-size: 12px;
+    margin-right: 20px;
 }

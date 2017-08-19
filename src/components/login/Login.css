@@ -13,7 +13,7 @@
     width: 300px;
     display: flex;
     flex-flow: column;
-    border: 1px solid black;
+    box-shadow: 0 0 5px 0 black;
     background: lightgray;
 }
 
@@ -47,14 +47,11 @@
     margin-right: 100px;
 }
 
-.password{
-    margin-top: 30px;
-}
-
 .passwordInput{
     font-family: caption;
 }
 
 .loginButton{
     align-self: center;
+    margin-top: -20px;
 }

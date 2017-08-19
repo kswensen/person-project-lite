@@ -15,23 +15,21 @@ class Home extends Component{
 
     componentDidMount(){
         return axios.get('/api/getVideos').then(response => {
-            console.log(response.data[0])
             this.setState({
-                videos: response.data[0]
+                videos: JSON.parse(response.data.body).items
             })
-            console.log("videos: ", this.state.videos)
         })
     }
 
-    // getVideoCall(){
-    //     return axios.get('/api/getVideoCall').then(response => { 
-    //         console.log(response.data[0].body);
-    //         this.setState({
-    //             videos: response.data
-    //         });
-    //         console.log(this.state.videos)
-    //     })
-    // }
+    getVideoCall(){
+        return axios.get('/api/getVideoCall').then(response => { 
+            console.log(JSON.parse(response.data.boyd).items);
+            // this.setState({
+            //     videos: response.data
+            // });
+            // console.log(this.state.videos)
+        })
+    }
 
     logOut(){
         this.setState({
@@ -42,19 +40,23 @@ class Home extends Component{
     render(){
         if(!this.state.logout){
             const videos = this.state.videos.map((video, i)=> {
+                const url = 'https://www.youtube.com/watch?v=' + video.id;
                 return (<ul key={i} className="video">
-                    <img src={video.thumbnail}/>
-                    <h3>{video.title}</h3>
+                    <a target='_blank' href={url}><img src={video.snippet.thumbnails.maxres.url}/></a>
+                    <a target='_blank' href={url}><p>{video.snippet.title}</p></a>
                 </ul>)
             })
         return(
             <div>
+                <div className="background">
                 <div className="mainScreen">
                 <header className="header">
                     <div className="logoContainer">
                     <img src='./logoutIcon.png' className="logo" onClick={()=> this.logOut()}></img>
                     </div>
                 </header>
+                {videos}
+                </div>
                 </div>
             </div>
         )} else {return <Login />}
