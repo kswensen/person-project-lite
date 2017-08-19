@@ -9,7 +9,9 @@ class Home extends Component{
 
         this.state = {
             logout: false,
-            videos: []
+            videos: [],
+            toggled: false,
+            url: ''
         }
     }
 
@@ -23,12 +25,37 @@ class Home extends Component{
 
     getVideoCall(){
         return axios.get('/api/getVideoCall').then(response => { 
-            console.log(JSON.parse(response.data.boyd).items);
+            console.log(JSON.parse(response.data.body).items);
             // this.setState({
             //     videos: response.data
             // });
             // console.log(this.state.videos)
         })
+    }
+
+    toggleUpload(){
+        this.setState({
+            toggled: true
+        })
+    }
+
+    hideUpload(){
+        this.setState({
+            toggled: false,
+            url: ''
+        })
+    }
+
+    urlInput(input){
+        var splitUrl = input.split(/.{31}(?=\=)/);
+        var id = splitUrl[1].replace('=', '');
+        this.setState({
+            url: id
+        })
+    }
+
+    upload(){
+        
     }
 
     logOut(){
@@ -52,7 +79,21 @@ class Home extends Component{
                 <div className="mainScreen">
                 <header className="header">
                     <div className="logoContainer">
-                    <img src='./logoutIcon.png' className="logo" onClick={()=> this.logOut()}></img>
+                    <img src='./uploadLogo.png' className="logo" onClick={()=> this.toggleUpload()}></img>
+                       {
+                           this.state.toggled 
+                           ?
+                        <div className="uploadBox">
+                            <div className="close" onClick={()=> this.hideUpload()}>X</div>
+                            <div className="uploadInfo">
+                            <input placeholder="YouTube URL" className="uploadInput" onChange={(e)=> this.urlInput()}></input>
+                            <button className="uploadButton"  onClick={()=> this.upload()}>Upload</button>
+                            </div>
+                        </div>
+                        :
+                        null
+                       }
+                    <img src='./logoutLogo.png' className="logo" onClick={()=> this.logOut()}></img>
                     </div>
                 </header>
                 {videos}

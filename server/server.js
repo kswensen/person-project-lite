@@ -22,10 +22,13 @@ app.post('/login', (req, res)=> {
 
 app.get('/api/getVideos', (req, res)=> {
     request('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=sxRzGmYg_J8&key=' + config.apiKey, (error, response, body)=> {
+    if(videoCall.length === 0){
         videoCall.push(response);    
         res.status(200).send(response);
+    } else {
+        res.status(200).send(response);
+    }    
     })
-    console.log(videoCall);
 })
 
 app.get('/api/getVideoCall', (req, res)=> {
@@ -35,6 +38,3 @@ app.get('/api/getVideoCall', (req, res)=> {
 
 const port = 3041;
 app.listen(port, ()=> {console.log(`Its lit fam on ${port}`)});
-
-
-//https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&key=

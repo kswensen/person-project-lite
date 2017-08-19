@@ -4,14 +4,12 @@
 }
 
 .background{
-    background: url('./../../mainImage.jpg') no-repeat center;
-    background-color: rgba(0, 0, 0, .10);
+    background: #6ca696;
 }
 
 .header{
     height: 9vh;
     width: 100%;
-    border-bottom: 2px solid lightgrey;
     background: white;
     display: flex;
     align-items: center;
@@ -21,13 +19,54 @@
 .logoContainer{
     height: 50px;
     width: 50px;
-    margin-right: 10px;
+    margin-right: 60px;
+    display: flex;
+    justify-content: space-around;
 }
 
 .logo{
     height: 100%;
     width: 50px;
     cursor: pointer;
+    margin-right: 40px;
+}
+
+.uploadBox{
+    height: 180px;
+    width: 400px;
+    background: #ce543c;
+    position: absolute;
+    top: 35%;
+    right: 40%;
+    display: flex;
+    flex-flow: column;
+    box-shadow: 0 0 2px 0 black;
+}
+
+.close{
+    width: 10px;
+    align-self: flex-end;
+    margin-top: 4px;
+    margin-right: 7px;
+    color: white;
+    cursor: pointer;
+}
+
+.uploadButton{
+    margin-top: 20px;
+}
+
+.uploadInput{
+    padding-left: 5px;
+}
+
+.uploadInfo{
+    height: 95vh;
+    width: 400px;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center
 }
 
 .video{
@@ -38,7 +77,7 @@
     width: 240px;
     justify-content: center;
     flex-flow: column;
-    margin-left: 10px;
+    margin-left: 20px;
     padding-top: 10px;
     background: white;
 }
