@@ -1,7 +1,7 @@
 {
   "name": "personal-project-lite",
   "version": "0.1.0",
-  "proxy": "http://localhost:3041",
+  "proxy": "http://localhost:3042",
   "private": true,
   "dependencies": {
     "axios": "^0.16.2",

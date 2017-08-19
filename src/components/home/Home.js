@@ -23,16 +23,6 @@ class Home extends Component{
         })
     }
 
-    getVideoCall(){
-        return axios.get('/api/getVideoCall').then(response => { 
-            console.log(JSON.parse(response.data.body).items);
-            // this.setState({
-            //     videos: response.data
-            // });
-            // console.log(this.state.videos)
-        })
-    }
-
     toggleUpload(){
         this.setState({
             toggled: true
@@ -47,15 +37,28 @@ class Home extends Component{
     }
 
     urlInput(input){
-        var splitUrl = input.split(/.{31}(?=\=)/);
-        var id = splitUrl[1].replace('=', '');
         this.setState({
-            url: id
+            url: input
         })
     }
 
+    urlSplit(input){
+        var splitUrl = input.split(/.{31}(?=\=)/);
+        var id = splitUrl[1].replace('=', '');
+        return id;
+
+        //https://www.youtube.com/watch?v=mzX1ws0SLGk
+    }
+
     upload(){
-        
+        let url = this.urlSplit(this.state.url);
+        let urlId = {
+            url: url
+        }
+        axios.post('/api/upload', urlId).then(response =>{
+            return axios.get('/api/getVideoCall').then(response =>{
+            })
+        })
     }
 
     logOut(){
@@ -86,7 +89,7 @@ class Home extends Component{
                         <div className="uploadBox">
                             <div className="close" onClick={()=> this.hideUpload()}>X</div>
                             <div className="uploadInfo">
-                            <input placeholder="YouTube URL" className="uploadInput" onChange={(e)=> this.urlInput()}></input>
+                            <input placeholder="YouTube URL" className="uploadInput" onChange={(e)=> this.urlInput(e.target.value)}></input>
                             <button className="uploadButton"  onClick={()=> this.upload()}>Upload</button>
                             </div>
                         </div>

@@ -18,6 +18,7 @@ app.post('/login', (req, res)=> {
     } else {
         res.status(404).send("Invalid");
     }
+    console.log("hello?")
 })
 
 app.get('/api/getVideos', (req, res)=> {
@@ -32,9 +33,17 @@ app.get('/api/getVideos', (req, res)=> {
 })
 
 app.get('/api/getVideoCall', (req, res)=> {
+    console.log("fired")
+    console.log(videoCall)
     res.status(200).send(videoCall);
 })
 
+app.post('/api/upload', (req, res)=> {
+    request('https://www.googleapis.com/youtube/v3/videos?part=snippet&id=' + req.body.url + '&key=' + config.apiKey, (error, response, body) => {
+        videoCall.push(response);
+        res.status(200).send(response);
+    })
+})
 
-const port = 3041;
+const port = 3042;
 app.listen(port, ()=> {console.log(`Its lit fam on ${port}`)});
