@@ -46,8 +46,6 @@ class Home extends Component{
         var splitUrl = input.split(/.{31}(?=\=)/);
         var id = splitUrl[1].replace('=', '');
         return id;
-
-        //https://www.youtube.com/watch?v=mzX1ws0SLGk
     }
 
     upload(){
@@ -56,16 +54,17 @@ class Home extends Component{
             url: url
         }
         axios.post('/api/upload', urlId).then(response =>{
-            console.log(JSON.parse(response.data.body).items)
             if(this.state.videos === null){
                 this.setState({
                     videos: JSON.parse(response.data.body).items,
-                    toggled: false
+                    toggled: false,
+                    url: ''
                 })
             } else {
             this.setState({
                 videos: [...this.state.videos, JSON.parse(response.data.body).items],
-                toggled: false
+                toggled: false,
+                url: ''
             })
         }
         })
@@ -86,9 +85,7 @@ class Home extends Component{
                 null
                 :
                 videos = this.state.videos.map((nested)=>{
-                    console.log("nested", nested)
                 return nested.map((video, i)=> {
-                    console.log("video: ", video.snippet.title)
                 const url = 'https://www.youtube.com/watch?v=' + video.id;
                 return (<ul key={i} className="video">
                     <a target='_blank' href={url}><img src={video.snippet.thumbnails.maxres.url}/></a>
@@ -96,13 +93,14 @@ class Home extends Component{
                 </ul>)
             })
             })
-            console.log("videos array: ", videos)
             }
         return(
             <div>
                 <div className="background">
                 <div className="mainScreen">
                 <header className="header">
+                    <div className="favTube"></div>
+                    <div className="favTubeText"></div>
                     <div className="logoContainer">
                     <img src='./uploadLogo.png' className="logo" onClick={()=> this.toggleUpload()}></img>
                     <img src='./logoutLogo.png' className="logo" onClick={()=> this.logOut()}></img>
@@ -112,6 +110,7 @@ class Home extends Component{
                         <div className="uploadBox">
                             <div className="close" onClick={()=> this.hideUpload()}>X</div>
                             <div className="uploadInfo">
+                                <h4>Upload Video</h4>
                             <input placeholder="YouTube URL" className="uploadInput" onChange={(e)=> this.urlInput(e.target.value)}></input>
                             <button className="uploadButton"  onClick={()=> this.upload()}>Upload</button>
                             </div>
@@ -121,7 +120,9 @@ class Home extends Component{
                        }
                     </div>
                 </header>
+                <div className="videoContainer">
                 {videos}
+                </div>
                 </div>
                 </div>
             </div>

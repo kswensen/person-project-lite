@@ -1,5 +1,4 @@
 .mainScreen{
-    height: 100vh;
     width: 100%;
 }
 
@@ -8,33 +7,51 @@
 }
 
 .header{
-    height: 9vh;
+    height: 10vh;
     width: 100%;
     background: white;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-content: space-between;
+}
+
+.favTube{
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    background: url(/static/media/FavTube.7ffcc6c9.png) no-repeat center;
+    margin-left: 120px;
+    background-position-x: -107px;
+    background-position-y: -84px;
+    background-size: 300px;
+}
+
+.favTubeText{
+    height: 80px;
+    width: 260px;
+    background: url(/static/media/FavTube.7ffcc6c9.png) no-repeat center;
+    background-position-x: center;
+    background-position-y: -257px;
+    border-radius: 5%;
 }
 
 .logoContainer{
     height: 50px;
-    width: 50px;
-    margin-right: 60px;
     display: flex;
     justify-content: space-around;
+    margin-right: 86px;
 }
 
 .logo{
-    height: 100%;
-    width: 50px;
+    height: 55px;
     cursor: pointer;
-    margin-right: 40px;
+    margin-right: 25px;
 }
 
 .uploadBox{
-    height: 180px;
+    height: 275px;
     width: 400px;
-    background: #ce543c;
+    background: #6ca696;
     position: absolute;
     top: 35%;
     right: 40%;
@@ -54,10 +71,15 @@
 
 .uploadButton{
     margin-top: 20px;
+    background: white;
+    color: black;
+    box-shadow: 0 0 5px 0 black;
+
 }
 
 .uploadInput{
     padding-left: 5px;
+    margin-top: 20px;
 }
 
 .uploadInfo{
@@ -69,26 +91,44 @@
     align-items: center
 }
 
+.uploadInfo h4{
+    font-size: 29px;
+    margin-top: -30px;
+    color: white;
+}
+
+.videoContainer{
+    background: white;
+    box-shadow: 0 0 5px 0 black;
+    height: 100vh;
+    width: 90%;
+    margin: auto;
+    margin-top: 69.5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: baseline;
+}
+
 .video{
     display: flex;
-    box-shadow: 0 0 5px 0 black;
-    border-radius: 5px;
     height: 250px;
     width: 240px;
     justify-content: center;
     flex-flow: column;
-    margin-left: 20px;
+    margin-left: 4px;
     padding-top: 10px;
-    background: white;
 }
 
 .video img{
     width: 200px;
     height: 150px;
     border: 2px solid lightgray;
+    margin-left: 8px;
 }
 
 .video p{
     font-size: 12px;
     margin-right: 20px;
+    text-align: center;
 }
