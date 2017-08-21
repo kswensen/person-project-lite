@@ -15,13 +15,13 @@ class Home extends Component{
         }
     }
 
-    componentDidMount(){
-        return axios.get('/api/getVideoCall').then(response => {
-            this.setState({
-                videos: response.data
-            })
-        })
-    }
+    // componentDidMount(){
+    //     return axios.get('/api/getVideoCall').then(response => {
+    //         this.setState({
+    //             videos: response.data
+    //         })
+    //     })
+    // }
 
     toggleUpload(){
         this.setState({
@@ -57,10 +57,17 @@ class Home extends Component{
         }
         axios.post('/api/upload', urlId).then(response =>{
             console.log(JSON.parse(response.data.body).items)
+            if(this.state.videos === null){
+                this.setState({
+                    videos: JSON.parse(response.data.body).items,
+                    toggled: false
+                })
+            } else {
             this.setState({
-                videos: JSON.parse(response.data.body).items,
+                videos: [...this.state.videos, JSON.parse(response.data.body).items],
                 toggled: false
             })
+        }
         })
     }
 
@@ -72,13 +79,25 @@ class Home extends Component{
     
     render(){
         if(!this.state.logout){
-            const videos = this.state.videos.map((video, i)=> {
+            var videos = [];
+            {
+                this.state.videos.length < 1
+                ?
+                null
+                :
+                videos = this.state.videos.map((nested)=>{
+                    console.log("nested", nested)
+                return nested.map((video, i)=> {
+                    console.log("video: ", video.snippet.title)
                 const url = 'https://www.youtube.com/watch?v=' + video.id;
                 return (<ul key={i} className="video">
                     <a target='_blank' href={url}><img src={video.snippet.thumbnails.maxres.url}/></a>
                     <a target='_blank' href={url}><p>{video.snippet.title}</p></a>
                 </ul>)
             })
+            })
+            console.log("videos array: ", videos)
+            }
         return(
             <div>
                 <div className="background">
@@ -86,6 +105,7 @@ class Home extends Component{
                 <header className="header">
                     <div className="logoContainer">
                     <img src='./uploadLogo.png' className="logo" onClick={()=> this.toggleUpload()}></img>
+                    <img src='./logoutLogo.png' className="logo" onClick={()=> this.logOut()}></img>
                        {
                            this.state.toggled 
                            ?
@@ -99,7 +119,6 @@ class Home extends Component{
                         :
                         null
                        }
-                    <img src='./logoutLogo.png' className="logo" onClick={()=> this.logOut()}></img>
                     </div>
                 </header>
                 {videos}

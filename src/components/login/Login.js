@@ -47,16 +47,15 @@ class Login extends Component {
             <div>
                 <div className="loginBoxContainer">
                     <div className="loginBox">
+                    <div className="circleLogo"></div>
                         <div className="usernameContainer">
                             <div className="username">
-                                <h5>Username: </h5>
-                                <input onChange={(e) => this.updateUsername(e.target.value)}></input>
+                                <input placeholder="Username" onChange={(e) => this.updateUsername(e.target.value)}></input>
                             </div>
                         </div>
                         <div className="passwordContainer">
                             <div className="password">
-                                <h5>Password: </h5>
-                                <input className="passwordInput" type="password" onChange={(e) => this.updatePassword(e.target.value)}></input>
+                                <input placeholder="Password" className="passwordInput" type="password" onChange={(e) => this.updatePassword(e.target.value)}></input>
                             </div>
                         </div>
                         <button className="loginButton" onClick={() => this.submit()}>Submit</button>

@@ -4,17 +4,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url('./../../backgroundImage.jpg') no-repeat center;
-    
+    background: url('./../../home-bg.jpeg') no-repeat center;
+    background-size: cover;
 }
 
 .loginBox{
-    height: 35vh;
-    width: 300px;
+    height: 57vh;
+    width: 440px;
     display: flex;
     flex-flow: column;
-    box-shadow: 0 0 5px 0 black;
-    background: lightgray;
+    border: 2px solid #6ca696;
+    box-shadow: 0 0 5px 0 #6ca696;
+    background: white;
+    align-items: center;
 }
 
 .usernameContainer{
@@ -23,11 +25,24 @@
     display: flex;
     flex-flow: column;
     align-items: center;
+    justify-content: flex-end;
+    margin-top: -33px;
 }
 
-.usernameContainer h5{
-    margin-bottom: 10px;
-    margin-right: 100px;
+.circleLogo{
+    height: 200px;
+    width: 245px;
+    border-radius: 5%;
+    background: url(/static/media/CrownBakery.af05b042.png) no-repeat center;
+    margin-top: 48px;
+}
+
+.usernameContainer input{
+    border: 3px solid #6ca696;
+    width: 245px;
+    height: 25px;
+    padding-left: 5px;
+    text-align: center;
 }
 
 .username{
@@ -42,16 +57,31 @@
     align-items: center;
 }
 
-.passwordContainer h5{
-    margin-bottom: 10px;
-    margin-right: 100px;
+.passwordContainer input{
+    border: 3px solid #6ca696;
+    width: 245px;
+    height: 25px;
+    margin-top: -2px;
 }
 
 .passwordInput{
     font-family: caption;
+    padding-left: 5px;
+    text-align: center;
 }
 
 .loginButton{
     align-self: center;
-    margin-top: -20px;
+    margin-top: -78px;
+    border: 3px solid #6ca696;
+    box-shadow: 0 0 2px 0 black;
+    background: #6ca696;
+    color: white;
+    width: 245px;
+    height: 30px;
+    font-family: ‘BebasNeueBold’;
+    font-weight: normal;
+    font-style: normal;
+    letter-spacing: 1px;
+    font-size: 16px;
 }
